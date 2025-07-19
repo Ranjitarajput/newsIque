@@ -32,6 +32,11 @@ export default class App extends Component {
       this.setState({loadding: false});
 
     this.props.setProgress(100);  //dekh lena
+
+    console.log("PROPS IN PRODUCTION:", this.props);
+console.log("API KEY:", this.props.apiKey);
+console.log("Category:", this.props.category);
+console.log("Page Size:", this.props.pageSize);
  
     // console.log(parseData);
   }
