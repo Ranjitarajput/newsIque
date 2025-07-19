@@ -98,7 +98,7 @@ export default class App extends Component {
           <h2 className="text-center my-4">FactFlux - Daily news </h2>
           {this.state.loadding && <Spinner />}
           <InfiniteScroll
-            dataLength={this.state.articles.length}
+            dataLength={this.state.articles.length || 0}
             next={this.fetchMoreData}
             hasMore={this.state.articles.length < this.state.totalResults}
             loader={this.state.articles.length !== this.state.totalResults ? <Spinner /> : "complete all the news"}
@@ -106,7 +106,7 @@ export default class App extends Component {
             <div className="container">
             <div className="row mt-3">
               {/* if we dont set a unique key for each child then it will give an err message in console so eack article ahs uniqeu url or id uniue nahi hai we can not use id but url are unique use any of this  */}
-              {this.state.articles.length > 0 ? (
+              {this.state.articles.length !== 0 ? (
                 this.state.articles.map((ele) => {
                   return (
                     <div className="col-sm-12 col-md-6 col-lg-4" key={ele.url}>
