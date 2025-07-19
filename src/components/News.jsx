@@ -23,7 +23,12 @@ export default class App extends Component {
     // console.log(url);
     this.props.setProgress(1);
     this.setState({ loadding: true });
-    let data = await fetch(url);
+    let data = await fetch(url, {
+  headers: {
+    'User-Agent': 'Mozilla/5.0',
+  },
+  mode: 'cors'
+});
     let parseData = await data.json();
     this.props.setProgress(50); //dekh lena 
    
@@ -85,7 +90,12 @@ console.log("Page Size:", this.props.pageSize);
   // console.log(url);
  
   this.setState({ loadding: true });
-  let data = await fetch(url);
+  let data = await fetch(url,  {
+  headers: {
+    'User-Agent': 'Mozilla/5.0',
+  },
+  mode: 'cors'
+});
   let parseData = await data.json();
   
   this.setState({
