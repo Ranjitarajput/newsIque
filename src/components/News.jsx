@@ -22,14 +22,14 @@ export default class App extends Component {
     let url = `https://newsapi.org/v2/top-headlines?${queryParam}&country=us&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     // console.log(url);
     this.props.setProgress(1);
-    this.setState({ loading: true });
+    this.setState({ loadding: true });
     let data = await fetch(url);
     let parseData = await data.json();
     this.props.setProgress(50); //dekh lena 
    
       this.setState({articles: parseData.articles});
       this.setState({totalResults: parseData.totalResults});
-      this.setState({loading: false});
+      this.setState({loadding: false});
 
     this.props.setProgress(100);  //dekh lena
  
@@ -79,14 +79,14 @@ export default class App extends Component {
   let url = `https://newsapi.org/v2/top-headlines?${queryParam}&country=us&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${nextPage}&pageSize=${this.props.pageSize}`;
   // console.log(url);
  
-  this.setState({ loading: true });
+  this.setState({ loadding: true });
   let data = await fetch(url);
   let parseData = await data.json();
   
   this.setState({
     articles: this.state.articles.concat(parseData.articles),
     totalResults: parseData.totalResults,
-    loading: false,
+    loadding: false,
     page: nextPage
   });
  
@@ -96,7 +96,7 @@ export default class App extends Component {
     return (
       <div className="container ps-md-5 ">
           <h2 className="text-center my-4">FactFlux - Daily news </h2>
-          {this.state.loading && <Spinner />}
+          {this.state.loadding && <Spinner />}
           <InfiniteScroll
             dataLength={this.state.articles.length}
             next={this.fetchMoreData}
@@ -130,7 +130,7 @@ export default class App extends Component {
                     </div>
                   );
                 })
-              ) : this.state.loading ? (
+              ) : this.state.loadding ? (
                 <p>Loding.....</p>
               ) : (
                 <p>No results found </p>
